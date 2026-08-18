@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Online</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* BANNER */
+        .banner {
+            background: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .banner h2 {
+            font-size: 35px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* SẢN PHẨM */
+        .container {
+            width: 84%;
+            margin: 40px auto;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            margin: 15px 0 10px;
+            color: #333;
+        }
+
+        .price {
+            color: #e53935;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #0056b3;
+        }
+
+        /* GIỎ HÀNG */
+        .cart {
+            background: white;
+            padding: 25px;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+
+        .cart h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        #cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e53935;
+        }
+
+        /* FORM */
+        .customer {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+
+        .customer h2 {
+            text-align: left;
+        }
+
+        .customer input,
+        .customer textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .order-button {
+            width: 100%;
+            padding: 13px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .order-button:hover {
+            background-color: #218838;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 50px;
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>🛒 SHOP ONLINE</h1>
+
+        <nav>
+            <a href="#">Trang chủ</a>
+            <a href="#products">Sản phẩm</a>
+            <a href="#cart">Giỏ hàng</a>
+        </nav>
+    </header>
+
+
+    <!-- BANNER -->
+    <section class="banner">
+        <h2>Chào mừng đến với Shop Online</h2>
+        <p>Sản phẩm chất lượng - Giá cả hợp lý</p>
+    </section>
+
+
+    <!-- DANH SÁCH SẢN PHẨM -->
+    <section class="container" id="products">
+
+        <h2>SẢN PHẨM NỔI BẬT</h2>
+
+        <div class="products">
+
+            <!-- Sản phẩm 1 -->
+            <div class="product">
+                <img src="https://picsum.photos/400/300?random=1">
+
+                <h3>Áo thun nam</h3>
+
+                <p class="price">150.000 VNĐ</p>
+
+                <button onclick="addToCart('Áo thun nam', 150000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+
+            <!-- Sản phẩm 2 -->
+            <div class="product">
+                <img src="https://picsum.photos/400/300?random=2">
+
+                <h3>Giày thể thao</h3>
+
+                <p class="price">500.000 VNĐ</p>
+
+                <button onclick="addToCart('Giày thể thao', 500000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+
+            <!-- Sản phẩm 3 -->
+            <div class="product">
+                <img src="https://picsum.photos/400/300?random=3">
+
+                <h3>Balo thời trang</h3>
+
+                <p class="price">300.000 VNĐ</p>
+
+                <button onclick="addToCart('Balo thời trang', 300000)">
+                    Thêm vào giỏ
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- GIỎ HÀNG -->
+    <section class="container" id="cart">
+
+        <div class="cart">
+
+            <h2>🛒 GIỎ HÀNG</h2>
+
+            <div id="cart-items">
+                Chưa có sản phẩm nào.
+            </div>
+
+            <p class="total">
+                Tổng tiền:
+                <span id="total">0</span> VNĐ
+            </p>
+
+        </div>
+
+
+        <!-- THÔNG TIN KHÁCH HÀNG -->
+        <div class="customer">
+
+            <h2>👤 THÔNG TIN KHÁCH HÀNG</h2>
+
+            <input type="text" id="name" placeholder="Họ và tên">
+
+            <input type="text" id="phone" placeholder="Số điện thoại">
+
+            <textarea id="address"
+                      rows="4"
+                      placeholder="Địa chỉ giao hàng"></textarea>
+
+            <button class="order-button" onclick="order()">
+                ĐẶT HÀNG
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Shop Online</p>
+        <p>Hotline: 0123 456 789</p>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // Mảng lưu sản phẩm trong giỏ
+        let cart = [];
+
+        // Thêm sản phẩm
+        function addToCart(name, price) {
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            displayCart();
+        }
+
+
+        // Hiển thị giỏ hàng
+        function displayCart() {
+
+            let cartItems = document.getElementById("cart-items");
+
+            let total = 0;
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML = "Chưa có sản phẩm nào.";
+
+            } else {
+
+                cartItems.innerHTML = "";
+
+                cart.forEach(function(item, index) {
+
+                    total += item.price;
+
+                    cartItems.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.name}</span>
+
+                            <span>
+                                ${item.price.toLocaleString('vi-VN')} VNĐ
+                                <button onclick="removeItem(${index})">
+                                    ❌
+                                </button>
+                            </span>
+                        </div>
+                    `;
+
+                });
+            }
+
+            document.getElementById("total").innerText =
+                total.toLocaleString('vi-VN');
+        }
+
+
+        // Xóa sản phẩm
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+            displayCart();
+        }
+
+
+        // Đặt hàng
+        function order() {
+
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let address = document.getElementById("address").value;
+
+            if (cart.length === 0) {
+
+                alert("Bạn chưa chọn sản phẩm!");
+
+                return;
+            }
+
+            if (name === "" || phone === "" || address === "") {
+
+                alert("Vui lòng nhập đầy đủ thông tin!");
+
+                return;
+            }
+
+            alert(
+                "Đặt hàng thành công!\n\n" +
+                "Khách hàng: " + name + "\n" +
+                "Số điện thoại: " + phone
+            );
+
+            cart = [];
+
+            displayCart();
+        }
+
+    </script>
+
+</body>
+</html>
